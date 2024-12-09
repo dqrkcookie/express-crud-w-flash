@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kiosk</title>
+  </head>
+  <style>
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    form input {
+      border: 1px solid #000000;
+      padding: 3px;
+      margin: 3px;
+      display: block;
+    }
+
+    input[type='submit'] {
+      cursor: pointer;
+    }
+
+    input[type='number'] {
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      background-color: #adff2f;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h2>Edit data</h2>
+      <% if(messages.success) {%>
+      <h3><%= messages.success %></h3>
+      <% } %>
+      <form
+        action="/edit"
+        method="POST"
+        onsubmit="this.action += '/' + document.querySelector('#id').value + '?_method=PATCH'; return true;"
+      >
+        <input type="number" name="userId" placeholder="User Id" id="id" />
+        <input type="text" name="userName" placeholder="New user name" />
+        <input
+          type="text"
+          name="displayName"
+          placeholder="New user display name"
+        />
+        <input type="submit" name="sumbit" value="Edit" />
+      </form>
+    </div>
+  </body>
+</html>
